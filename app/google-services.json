@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "546199822309",
+    "firebase_url": "https://monopolybank-2b5c6.firebaseio.com",
+    "project_id": "monopolybank-2b5c6",
+    "storage_bucket": "monopolybank-2b5c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546199822309:android:8eb42d92d624998c",
+        "android_client_info": {
+          "package_name": "com.apps.tejasnarayanan.monopolybank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546199822309-i4ti4gh5fvcas1l730li7mgdstcom47d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.apps.tejasnarayanan.monopolybank",
+            "certificate_hash": "ac731814d7c9b36357cdc77556bdbde325729465"
+          }
+        },
+        {
+          "client_id": "546199822309-bir437haar1okcdjsa0uok57b98gsc4e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFFKA-GfQyXBzmSlsJdcRpeA1-bL6lOP4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546199822309-bir437haar1okcdjsa0uok57b98gsc4e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
