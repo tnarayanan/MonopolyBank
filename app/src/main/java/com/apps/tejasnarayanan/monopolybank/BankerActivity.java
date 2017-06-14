@@ -79,5 +79,8 @@ public class BankerActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {}
+
 
 }
