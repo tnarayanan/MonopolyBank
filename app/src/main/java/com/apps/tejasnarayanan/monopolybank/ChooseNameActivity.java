@@ -48,17 +48,17 @@ public class ChooseNameActivity extends AppCompatActivity {
 
                 name = nameField.getText().toString();
 
+                reference.child(name).child("Money").setValue(1500);
+
+                reference.child("Bank").setValue(999999);
+
                 System.out.println("Added " + name);
 
                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        dataSnapshot.getRef().child(name).child("Money").setValue(1500);
 
-                        if (!dataSnapshot.hasChild("Bank")) {
-                            reference.child("Bank").setValue(999999);
-                        }
 
                         for (DataSnapshot playerSnapshot : dataSnapshot.getChildren()) {
                             if (!players.contains(playerSnapshot.getKey())) {
@@ -76,11 +76,11 @@ public class ChooseNameActivity extends AppCompatActivity {
                     }
                 });
 
-                Intent i = null;
+                Intent i;
                 if(JoinGameActivity.isBanker) {
                     i = new Intent(getApplicationContext(), BankerActivity.class);
                 } else {
-                    //i = new Intent(getApplicationContext(), PlayerActivity.class);
+                    i = new Intent(getApplicationContext(), PlayerActivity.class);
                 }
 
                 startActivity(i);

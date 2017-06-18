@@ -3,16 +3,20 @@ package com.apps.tejasnarayanan.monopolybank;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import static com.apps.tejasnarayanan.monopolybank.ChooseNameActivity.players;
 
 public class BankerActivity extends AppCompatActivity {
 
@@ -29,6 +33,7 @@ public class BankerActivity extends AppCompatActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference reference = database.getReference().child(JoinGameActivity.code).child(ChooseNameActivity.name);
+    DatabaseReference gameReference = database.getReference().child(JoinGameActivity.code);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +57,46 @@ public class BankerActivity extends AppCompatActivity {
         reference.child("Money").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                moneyLabel.setText(String.valueOf(dataSnapshot.getValue()));
+                moneyLabel.setText("$" + String.valueOf(dataSnapshot.getValue()));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        gameReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                String newPlayers = "";
+                int numNewPlayers = 0;
+
+                for (DataSnapshot playerSnapshot : dataSnapshot.getChildren()) {
+                    if (!players.contains(playerSnapshot.getKey())) {
+                        if (!newPlayers.equals("")) {
+                            newPlayers += ", ";
+                        }
+                        players.add(playerSnapshot.getKey());
+                        newPlayers += playerSnapshot.getKey();
+                        numNewPlayers++;
+                    }
+
+                }
+
+                if (numNewPlayers > 0) {
+                    String finalString = "";
+                    if (numNewPlayers == 1) {
+                        finalString = "New player: " + newPlayers;
+                    } else {
+                        finalString = "New players: " + newPlayers;
+                    }
+
+                    Toast.makeText(getApplicationContext(), finalString, Toast.LENGTH_LONG).show();
+                }
+
+
             }
 
             @Override
@@ -72,8 +116,8 @@ public class BankerActivity extends AppCompatActivity {
         propertyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent i = new Intent(getApplicationContext(), PropertyActivity.class);
-                startActivity(i);*/
+                Intent i = new Intent(getApplicationContext(), PropertyActivity.class);
+                startActivity(i);
             }
         });
 

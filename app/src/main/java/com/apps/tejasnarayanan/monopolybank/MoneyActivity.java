@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -59,6 +60,7 @@ public class MoneyActivity extends AppCompatActivity {
 
         doneButton = (Button) findViewById(R.id.doneButtonMoney);
 
+        Toast.makeText(getApplicationContext(), ChooseNameActivity.players.toString(), Toast.LENGTH_LONG).show();
 
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ChooseNameActivity.players);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -140,12 +142,7 @@ public class MoneyActivity extends AppCompatActivity {
                     System.out.println(receiverValue + " + " + amountChange + " = " + (receiverValue + amountChange));
                 }
 
-                Intent i = null;
-                if(JoinGameActivity.isBanker) {
-                    i = new Intent(getApplicationContext(), BankerActivity.class);
-                } else {
-                    //i = new Intent(getApplicationContext(), PlayerActivity.class);
-                }
+                Intent i = new Intent(getApplicationContext(), BankerActivity.class);
 
                 startActivity(i);
             }

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.apps.tejasnarayanan.monopolybank.PropertyActivity">
+
+    <TextView
+        android:id="@+id/propertyTitleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Property"
+        android:textSize="36sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Spinner
+        android:id="@+id/propertyPlayerSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/propertyTitleLabel"
+        android:layout_marginTop="65dp" />
+
+    <TextView
+        android:id="@+id/propertyPlayerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/propertyTitleLabel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:text="Player" />
+
+    <TextView
+        android:id="@+id/propertyColorLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Color"
+        android:layout_above="@+id/propertyColorSpinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp" />
+
+    <Spinner
+        android:id="@+id/propertyColorSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true" />
+
+    <TextView
+        android:id="@+id/propertyLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/propertyColorSpinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="Property" />
+
+    <Spinner
+        android:id="@+id/propertySpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/propertyLabel"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/propertyCostLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp"
+        android:text="Cost"
+        android:textSize="24sp"
+        android:layout_below="@+id/propertySpinner"
+        android:layout_alignLeft="@+id/propertyLabel"
+        android:layout_alignStart="@+id/propertyLabel" />
+
+    <Button
+        android:id="@+id/propertyDoneButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="23dp"
+        android:text="Done" />
+
+</RelativeLayout>
