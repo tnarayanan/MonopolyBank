@@ -2,6 +2,7 @@ package com.apps.tejasnarayanan.monopolybank;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -11,6 +12,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class PlayerActivity extends AppCompatActivity {
 
     TextView statusLabel;
@@ -19,6 +22,8 @@ public class PlayerActivity extends AppCompatActivity {
     TextView ownedPropertyLabel;
 
     ListView listView;
+
+    ArrayList<String> ownedProperties = new ArrayList<>();
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference reference = database.getReference().child(JoinGameActivity.code).child(ChooseNameActivity.name);
@@ -36,6 +41,26 @@ public class PlayerActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView);
 
         statusLabel.setText("Code: " + JoinGameActivity.code + "        " + ChooseNameActivity.name);
+
+        reference.child("Property").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ownedProperties.clear();
+                try {
+                    for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                        ownedProperties.add(childSnapshot.getKey() + " (" + childSnapshot.getValue() + ")");
+                    }
+                } catch (NullPointerException e) {}
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, ownedProperties);
+                listView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         reference.child("Money").addValueEventListener(new ValueEventListener() {
             @Override

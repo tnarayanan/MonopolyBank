@@ -16,14 +16,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ChooseNameActivity extends AppCompatActivity {
 
     public static ArrayList<String> players = new ArrayList<>();
     public static String name;
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference reference = database.getReference().child(JoinGameActivity.code);
+    static FirebaseDatabase database = FirebaseDatabase.getInstance();
+    static DatabaseReference reference = database.getReference().child(JoinGameActivity.code);
 
     TextView chooseNameLabel;
     EditText nameField;
@@ -49,16 +50,17 @@ public class ChooseNameActivity extends AppCompatActivity {
                 name = nameField.getText().toString();
 
                 reference.child(name).child("Money").setValue(1500);
+                reference.child(name).child("Property").setValue(new ArrayList<Property>());
 
-                reference.child("Bank").setValue(999999);
+                reference.child("Bank").child("Money").setValue(999999);
+
+                writeProperty();
 
                 System.out.println("Added " + name);
 
                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-
-
 
                         for (DataSnapshot playerSnapshot : dataSnapshot.getChildren()) {
                             if (!players.contains(playerSnapshot.getKey())) {
@@ -88,5 +90,36 @@ public class ChooseNameActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private static void writeProperty() {
+        reference.child("Bank").child("Property").child("Mediterranean Avenue").setValue(0);
+        reference.child("Bank").child("Property").child("Baltic Avenue").setValue(0);
+        reference.child("Bank").child("Property").child("Oriental Avenue").setValue(0);
+        reference.child("Bank").child("Property").child("Vermont Avenue").setValue(0);
+        reference.child("Bank").child("Property").child("Connecticut Avenue").setValue(0);
+        reference.child("Bank").child("Property").child("St. Charles Place").setValue(0);
+        reference.child("Bank").child("Property").child("States Avenue").setValue(0);
+        reference.child("Bank").child("Property").child("Virginia Avenue").setValue(0);
+        reference.child("Bank").child("Property").child("St. James Place").setValue(0);
+        reference.child("Bank").child("Property").child("Tennessee Avenue").setValue(0);
+        reference.child("Bank").child("Property").child("New York Avenue").setValue(0);
+        reference.child("Bank").child("Property").child("Kentucky Avenue").setValue(0);
+        reference.child("Bank").child("Property").child("Indiana Avenue").setValue(0);
+        reference.child("Bank").child("Property").child("Illinois Avenue").setValue(0);
+        reference.child("Bank").child("Property").child("Atlantic Avenue").setValue(0);
+        reference.child("Bank").child("Property").child("Ventnor Avenue").setValue(0);
+        reference.child("Bank").child("Property").child("Marvin Gardens").setValue(0);
+        reference.child("Bank").child("Property").child("Pacific Avenue").setValue(0);
+        reference.child("Bank").child("Property").child("North Carolina Avenue").setValue(0);
+        reference.child("Bank").child("Property").child("Pennsylvania Avenue").setValue(0);
+        reference.child("Bank").child("Property").child("Park Place").setValue(0);
+        reference.child("Bank").child("Property").child("Boardwalk").setValue(0);
+        reference.child("Bank").child("Property").child("Reading Railroad").setValue(0);
+        reference.child("Bank").child("Property").child("Pennsylvania R.R.").setValue(0);
+        reference.child("Bank").child("Property").child("B. & O. Railroad").setValue(0);
+        reference.child("Bank").child("Property").child("Short Line R.R.").setValue(0);
+        reference.child("Bank").child("Property").child("Electric Company").setValue(0);
+        reference.child("Bank").child("Property").child("Water Works").setValue(0);
     }
 }

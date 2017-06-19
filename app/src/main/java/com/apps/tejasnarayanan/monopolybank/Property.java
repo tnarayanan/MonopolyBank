@@ -8,14 +8,18 @@ public class Property {
     String name;
     int numOfHouses;
 
-    public Property(String name, int numOfHouses) {
+    public Property(String name) {
         this.name = name;
-        this.numOfHouses = numOfHouses;
+        this.numOfHouses = 0;
     }
 
     public void addHouses(int h) {
         numOfHouses += h;
         numOfHouses = numOfHouses <= 5 ? numOfHouses : 5;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
