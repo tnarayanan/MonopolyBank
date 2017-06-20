@@ -2,6 +2,7 @@ package com.apps.tejasnarayanan.monopolybank;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -46,13 +47,10 @@ public class PlayerActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ownedProperties.clear();
-                try {
-                    for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                        ownedProperties.add(childSnapshot.getKey() + " (" + childSnapshot.getValue() + ")");
-                    }
-                } catch (NullPointerException e) {}
-
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, ownedProperties);
+                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                    ownedProperties.add(childSnapshot.getKey() + " (" + childSnapshot.getValue() + ")");
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(PlayerActivity.this, android.R.layout.simple_list_item_1, ownedProperties);
                 listView.setAdapter(adapter);
             }
 

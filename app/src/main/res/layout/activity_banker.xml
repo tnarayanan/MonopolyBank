@@ -42,11 +42,11 @@
         android:id="@+id/listViewBanker"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignEnd="@+id/statusLabelBanker"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/statusLabelBanker"
-        android:layout_below="@+id/bankingLabel" />
+        android:layout_below="@+id/bankingLabel"
+        android:layout_toStartOf="@+id/moneyButton"
+        android:layout_toLeftOf="@+id/moneyButton" />
 
     <TextView
         android:id="@+id/bankingLabel"
@@ -74,11 +74,11 @@
         android:id="@+id/propertyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/moneyButton"
-        android:layout_alignRight="@+id/moneyButton"
-        android:layout_below="@+id/moneyButton"
         android:layout_marginTop="73dp"
-        android:text="Property" />
+        android:text="Property"
+        android:layout_below="@+id/moneyButton"
+        android:layout_toRightOf="@+id/listViewBanker"
+        android:layout_toEndOf="@+id/listViewBanker" />
 
     <TextView
         android:id="@+id/ownedPropertyLabelBanker"

@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,9 +39,8 @@ public class PropertyActivity extends AppCompatActivity {
 
     int selectedCost;
 
-    ArrayAdapter<String> propertyAdapter;
 
-    ArrayList<String> availableNames;
+    ArrayList<String> availableNames = new ArrayList<>();
 
     static Map<String, Integer> prices;
 
@@ -63,11 +63,13 @@ public class PropertyActivity extends AppCompatActivity {
         costLabel = (TextView) findViewById(R.id.propertyCostLabel);
 
         playerSpinner = (Spinner) findViewById(R.id.propertyPlayerSpinner);
-        propertySpinner = (Spinner) findViewById(R.id.propertySpinner);
+        propertySpinner = (Spinner) findViewById(R.id.propertySpinner1);
 
         doneButton = (Button) findViewById(R.id.propertyDoneButton);
 
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ChooseNameActivity.players);
+        ArrayList<String> playersNoBank = (ArrayList<String>) ChooseNameActivity.players.clone();
+        playersNoBank.remove("Bank");
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, playersNoBank);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         playerSpinner.setAdapter(spinnerAdapter);
 
@@ -77,6 +79,10 @@ public class PropertyActivity extends AppCompatActivity {
                 for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
                     availableNames.add(childSnapshot.getKey());
                 }
+
+                ArrayAdapter<String> propertyAdapter = new ArrayAdapter<>(PropertyActivity.this, android.R.layout.simple_spinner_item, availableNames);
+                propertyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                propertySpinner.setAdapter(propertyAdapter);
             }
 
             @Override
@@ -85,10 +91,7 @@ public class PropertyActivity extends AppCompatActivity {
             }
         });
 
-        propertyAdapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_spinner_item, availableNames);
-        propertyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        propertySpinner.setAdapter(propertyAdapter);
+
 
         playerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -105,6 +108,7 @@ public class PropertyActivity extends AppCompatActivity {
         propertySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //propertySpinner.setSelection(position);
                 selectedProperty = (String) parent.getItemAtPosition(position);
                 selectedCost = prices.get(selectedProperty);
                 costLabel.setText("Cost: $" + String.valueOf(selectedCost));
@@ -117,8 +121,6 @@ public class PropertyActivity extends AppCompatActivity {
         });
 
         doneButton.setOnClickListener(new View.OnClickListener() {
-
-            ArrayList<String> playerProperty = new ArrayList<>();
 
             @Override
             public void onClick(View v) {
@@ -155,10 +157,10 @@ public class PropertyActivity extends AppCompatActivity {
         prices.put("Oriental Avenue", 100);
         prices.put("Vermont Avenue", 100);
         prices.put("Connecticut Avenue", 120);
-        prices.put("St. Charles Place", 140);
+        prices.put("St Charles Place", 140);
         prices.put("States Avenue", 140);
         prices.put("Virginia Avenue", 160);
-        prices.put("St. James Place", 180);
+        prices.put("St James Place", 180);
         prices.put("Tennessee Avenue", 180);
         prices.put("New York Avenue", 200);
         prices.put("Kentucky Avenue", 220);
@@ -173,9 +175,9 @@ public class PropertyActivity extends AppCompatActivity {
         prices.put("Park Place", 350);
         prices.put("Boardwalk", 400);
         prices.put("Reading Railroad", 200);
-        prices.put("Pennsylvania R.R.", 200);
-        prices.put("B. & O. Railroad", 200);
-        prices.put("Short Line R.R.", 200);
+        prices.put("Pennsylvania RR", 200);
+        prices.put("B & O Railroad", 200);
+        prices.put("Short Line RR", 200);
         prices.put("Electric Company", 150);
         prices.put("Water Works", 150);
     }

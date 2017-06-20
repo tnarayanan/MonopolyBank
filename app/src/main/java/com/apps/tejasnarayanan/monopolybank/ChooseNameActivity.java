@@ -98,10 +98,10 @@ public class ChooseNameActivity extends AppCompatActivity {
         reference.child("Bank").child("Property").child("Oriental Avenue").setValue(0);
         reference.child("Bank").child("Property").child("Vermont Avenue").setValue(0);
         reference.child("Bank").child("Property").child("Connecticut Avenue").setValue(0);
-        reference.child("Bank").child("Property").child("St. Charles Place").setValue(0);
+        reference.child("Bank").child("Property").child("St Charles Place").setValue(0);
         reference.child("Bank").child("Property").child("States Avenue").setValue(0);
         reference.child("Bank").child("Property").child("Virginia Avenue").setValue(0);
-        reference.child("Bank").child("Property").child("St. James Place").setValue(0);
+        reference.child("Bank").child("Property").child("St James Place").setValue(0);
         reference.child("Bank").child("Property").child("Tennessee Avenue").setValue(0);
         reference.child("Bank").child("Property").child("New York Avenue").setValue(0);
         reference.child("Bank").child("Property").child("Kentucky Avenue").setValue(0);
@@ -116,9 +116,9 @@ public class ChooseNameActivity extends AppCompatActivity {
         reference.child("Bank").child("Property").child("Park Place").setValue(0);
         reference.child("Bank").child("Property").child("Boardwalk").setValue(0);
         reference.child("Bank").child("Property").child("Reading Railroad").setValue(0);
-        reference.child("Bank").child("Property").child("Pennsylvania R.R.").setValue(0);
-        reference.child("Bank").child("Property").child("B. & O. Railroad").setValue(0);
-        reference.child("Bank").child("Property").child("Short Line R.R.").setValue(0);
+        reference.child("Bank").child("Property").child("Pennsylvania RR").setValue(0);
+        reference.child("Bank").child("Property").child("B & O Railroad").setValue(0);
+        reference.child("Bank").child("Property").child("Short Line RR").setValue(0);
         reference.child("Bank").child("Property").child("Electric Company").setValue(0);
         reference.child("Bank").child("Property").child("Water Works").setValue(0);
     }
